@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Publicidad</h1>
+
+<% @publicidads.each do |publicidad| %>
+<div class="card my-2" style="width: 25rem;">
+  <%= image_tag(publicidad.image_url, class:"img-fluid")%>
+  <div class="card-body">
+    <h5 class="card-title"><%= publicidad.title %></h5>
+    <p class="card-text"><%= publicidad.description %></p>
+    <a href="<%= publicidad.publi_url %>" class="btn btn-primary">Comprar</a>
+    <p><%= link_to 'Show', publicidad %></p>
+    <p><%= link_to 'Edit', edit_publicidad_path(publicidad) %></p>
+    <p><%= link_to 'Destroy', publicidad, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+  </div>
+</div>
+<% end %>
+
+
+<br>
+
+<%= link_to 'New Publicidad', new_publicidad_path, class:"btn btn-info" %>

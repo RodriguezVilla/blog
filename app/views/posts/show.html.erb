@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<h2>
+  <%= @post.titulo %>
+</h2>"
+<p class="text-center">  <%= image_tag(@post.img_destacada_url) %>
+</p>
+<div class="container">
+<p>
+  <strong>Img destacada url:</strong>
+  <%= @post.img_destacada_url %>
+
+</p>
+
+
+<strong>Descripticion:</strong>
+<%= sanitize(@post.descripticion) %>
+</div>
+
+<p>
+  <strong>Fecha:</strong>
+  <%= @post.fecha %>
+</p>
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>

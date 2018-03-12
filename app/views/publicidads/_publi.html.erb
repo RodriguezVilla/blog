@@ -1,0 +1,20 @@
+<% @publicidads.each do |publicidad| %>
+<div class="card my-2">
+  <%= image_tag(publicidad.image_url, class:"img-fluid")%>
+  <div class="card-body">
+    <h5 class="card-title"><%= publicidad.title %></h5>
+    <p class="card-text"><%= publicidad.description %></p>
+    <a href="<%= publicidad.publi_url %>" class="btn btn-primary">Comprar</a>
+  </div>
+
+  <% if session[:user_id] %>
+  <%  user = User.find_by(id: session[:user_id]) %>
+  <% if (user.tipo=="Total" || user.tipo=="Publicidad") %>
+
+  <p><%= link_to 'Show', publicidad %></p>
+  <p><%= link_to 'Edit', edit_publicidad_path(publicidad) %></p>
+  <p><%= link_to 'Destroy', publicidad, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+  <% end %>
+  <% end %>
+</div>
+<% end %>

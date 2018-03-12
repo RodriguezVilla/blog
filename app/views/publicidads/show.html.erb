@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @publicidad.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @publicidad.description %>
+</p>
+
+<p>
+  <strong>Image url:</strong>
+  <%= image_tag(@publicidad.image_url) %>
+</p>
+
+<p>
+  <strong>Publi url:</strong>
+  <%= @publicidad.publi_url %>
+</p>
+
+<%= link_to 'Edit', edit_publicidad_path(@publicidad) %> |
+<%= link_to 'Back', publicidads_path %>

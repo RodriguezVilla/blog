@@ -1,0 +1,24 @@
+    <% @posts.each do |post| %>
+
+        <h2><%= post.titulo %></h2>
+          <p><%= image_tag(post.img_destacada_url ,class:"img-fluid") %></p>
+          <div><%= truncate(strip_tags(post.descripticion), length:380) %></div>
+          <p><%= post.fecha %></p>
+        <p><%= link_to 'Leer más', post, class:"btn btn-outline-info" %></p>
+
+
+    <% if @usu.call  %>
+
+        <% if (@total.call || @blog.call)  %>
+        <p><%= link_to 'Edit', edit_post_path(post) %></p>
+        <p><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+        <% end %>
+        <% end %>
+    <% end %>
+
+    <% if  @usu.call %>
+      <% user = User.find_by(id: session[:user_id]) %>
+      <% if (@total.call || @blog.call)  %>
+        <%= link_to 'New Post', new_post_path, class:"btn btn-info btn-block" %>
+      <% end %>
+    <% end %>

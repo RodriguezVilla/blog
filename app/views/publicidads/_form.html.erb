@@ -1,0 +1,37 @@
+<%= form_with(model: publicidad, local: true, :html => {:multipart => true}) do |form| %>
+  <% if publicidad.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(publicidad.errors.count, "error") %> prohibited this publicidad from being saved:</h2>
+
+      <ul>
+      <% publicidad.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :publicidad_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description, id: :publicidad_description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :image_url %>
+    <%= form.file_field :image_url, id: :publicidad_image_url %>
+  </div>
+
+  <div class="field">
+    <%= form.label :publi_url %>
+    <%= form.text_field :publi_url, id: :publicidad_publi_url %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
