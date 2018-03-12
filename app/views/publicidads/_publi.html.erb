@@ -7,14 +7,12 @@
     <a href="<%= publicidad.publi_url %>" class="btn btn-primary">Comprar</a>
   </div>
 
-  <% if session[:user_id] %>
-  <%  user = User.find_by(id: session[:user_id]) %>
-  <% if (user.tipo=="Total" || user.tipo=="Publicidad") %>
-
+  <% if  @usu.call %>
+    <% if (@total.call || @publi.call)  %>
   <p><%= link_to 'Show', publicidad %></p>
   <p><%= link_to 'Edit', edit_publicidad_path(publicidad) %></p>
   <p><%= link_to 'Destroy', publicidad, method: :delete, data: { confirm: 'Are you sure?' } %></p>
-  <% end %>
+    <% end %>
   <% end %>
 </div>
 <% end %>

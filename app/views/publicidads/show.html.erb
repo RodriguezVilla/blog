@@ -19,6 +19,9 @@
   <strong>Publi url:</strong>
   <%= @publicidad.publi_url %>
 </p>
-
+<% if  @usu.call %>
+  <% if (@total.call || @publi.call)  %>
 <%= link_to 'Edit', edit_publicidad_path(@publicidad) %> |
 <%= link_to 'Back', publicidads_path %>
+<% end %>
+<% end %>

@@ -6,34 +6,36 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   skip_before_action :no_autoriza, only: [:index, :show]
 
-
+  def comprobar_user
+    @usu =  lambda {usu?}
+    @total = lambda {usu_total?}
+    @blog = lambda {usu_blog?}
+    @publi = lambda {usu_publi?}
+  end
 
   # GET /posts
   # GET /posts.json
   def index
 
     @posts = Post.order(fecha: :desc)
-    @usu =  lambda {usu?}
-    @total = lambda {usu_total?}
-    @blog = lambda {usu_blog?}
+    comprobar_user
   end
   # GET /posts/1
   # GET /posts/1.json
   def show
-    @usu =  lambda {usu?}
-    @total = lambda {usu_total?}
-    @blog = lambda {usu_blog?}
+    comprobar_user
   end
 
   # GET /posts/new
   def new
+    comprobar_user
     (usu_total? || usu_blog?) ? @post = Post.new : (redirect_to login_url, notice: "Sin privilegios de blog")
   end
 
   # GET /posts/1/edit
   def edit
-    user = User.find_by(id: session[:user_id])
-    if (user.tipo=="Total" || user.tipo=="Blog")
+    comprobar_user
+    if (usu_total? || usu_blog?)
     else
       (redirect_to login_url, notice: "Sin privilegios de blog")
     end
@@ -42,8 +44,8 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    user = User.find_by(id: session[:user_id])
-    if (user.tipo=="Total" || user.tipo=="Blog")
+    comprobar_user
+    if (usu_total? || usu_blog?)
       @post = Post.new(post_params)
 
       respond_to do |format|
@@ -63,8 +65,8 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
   def update
-    user = User.find_by(id: session[:user_id])
-    if (user.tipo=="Total" || user.tipo=="Blog")
+    comprobar_user
+    if (usu_total? || usu_blog?)
       respond_to do |format|
         if @post.update(post_params)
           format.html { redirect_to @post, notice: 'Post was successfully updated.' }
@@ -82,8 +84,8 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
-    user = User.find_by(id: session[:user_id])
-    if (user.tipo=="Total" || user.tipo=="Blog")
+    comprobar_user
+    if (usu_total? || usu_blog?)
       @post.destroy
       respond_to do |format|
         format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }

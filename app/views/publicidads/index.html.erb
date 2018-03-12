@@ -9,11 +9,15 @@
     <h5 class="card-title"><%= publicidad.title %></h5>
     <p class="card-text"><%= publicidad.description %></p>
     <a href="<%= publicidad.publi_url %>" class="btn btn-primary">Comprar</a>
+    <% if  @usu.call %>
+      <% if (@total.call || @publi.call)  %>
     <p><%= link_to 'Show', publicidad %></p>
     <p><%= link_to 'Edit', edit_publicidad_path(publicidad) %></p>
     <p><%= link_to 'Destroy', publicidad, method: :delete, data: { confirm: 'Are you sure?' } %></p>
   </div>
 </div>
+      <% end %>
+    <% end %>
 <% end %>
 
 

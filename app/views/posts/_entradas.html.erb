@@ -6,9 +6,7 @@
           <p><%= post.fecha %></p>
         <p><%= link_to 'Leer más', post, class:"btn btn-outline-info" %></p>
 
-
     <% if @usu.call  %>
-
         <% if (@total.call || @blog.call)  %>
         <p><%= link_to 'Edit', edit_post_path(post) %></p>
         <p><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></p>
@@ -17,7 +15,6 @@
     <% end %>
 
     <% if  @usu.call %>
-      <% user = User.find_by(id: session[:user_id]) %>
       <% if (@total.call || @blog.call)  %>
         <%= link_to 'New Post', new_post_path, class:"btn btn-info btn-block" %>
       <% end %>
