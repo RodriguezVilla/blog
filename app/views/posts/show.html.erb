@@ -1,26 +1,12 @@
-<p id="notice"><%= notice %></p>
-
-<h2>
-  <%= @post.titulo %>
-</h2>"
-<p class="text-center">  <%= image_tag(@post.img_destacada_url) %>
-</p>
+<% if notice %><p id="notice"><%= notice %></p><% end %>
+<h2 class="pt-4"><%= @post.titulo %></h2>
+<p class="text-center">  <%= image_tag(@post.img_destacada_url) %></p>
 <div class="container">
-<p>
-  <strong>Img destacada url:</strong>
-  <%= @post.img_destacada_url %>
-
-</p>
-
-
-<strong>Descripticion:</strong>
-<%= sanitize(@post.descripticion) %>
+<%= (@post.descripticion).html_safe %>
 </div>
 
-<p>
-  <strong>Fecha:</strong>
-  <%= @post.fecha %>
-</p>
+<p class="pt-3"> <strong>Fecha:</strong> <%= @post.fecha %> </p>
+
 <% if (@usu.call) %>
 <% if (@total.call || @blog.call)   %>
 <%= link_to 'Edit', edit_post_path(@post) %> |
