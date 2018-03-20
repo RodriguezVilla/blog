@@ -1,0 +1,10 @@
+<div class="comentarios mt-4 pt-4">
+<p class="h3">Comentarios</p>
+<% @post.comments.each do |comment| %>
+<div class="my-2">
+    <h3 class="comment"> <small>by:</small> <strong><%= comment.commeter %></strong></h3>
+    <div><%= comment.text_comment %></div>
+    <h5> del post_id: <%= comment.post_id %> </h5>
+</div>
+<% end %>
+</div>

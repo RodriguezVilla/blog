@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include CurrentPublicidad
+  include CurrentComment
+
   before_action :no_autoriza
 #  before_action :usuario_total_o_publicidad?
 #  before_action :autoriza_total

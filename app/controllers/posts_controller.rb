@@ -1,8 +1,10 @@
 class PostsController < ApplicationController
   include CurrentPublicidad
   include CurrentUser
+  include CurrentComment
 
   before_action :mostrar_publicidad, only: [:index]
+  before_action :view_comments, only: [:show]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   skip_before_action :no_autoriza, only: [:index, :show]
 
@@ -13,17 +15,22 @@ class PostsController < ApplicationController
     @publi = lambda {usu_publi?}
   end
 
+
   # GET /posts
   # GET /posts.json
   def index
+    view_comments
 
     @posts = Post.order(fecha: :desc)
     comprobar_user
+
   end
   # GET /posts/1
   # GET /posts/1.json
   def show
     comprobar_user
+
+
   end
 
   # GET /posts/new

@@ -12,8 +12,10 @@
         <p><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></p>
         <% end %>
         <% end %>
-    <% end %>
 
+
+
+    <% end %>
     <% if  @usu.call %>
       <% if (@total.call || @blog.call)  %>
         <%= link_to 'New Post', new_post_path, class:"btn btn-info btn-block" %>

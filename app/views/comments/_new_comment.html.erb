@@ -1,0 +1,24 @@
+
+<%= form_with(model: Comment.new, url: @comment, local: true) do |f| %>
+
+  <h4 class="mt-4 pt-4">Haz tú comentario</h4>
+  <div class="form-group">
+    <%= f.label :commeter %>
+    <%= f.text_field :commeter, id: :comment_commeter, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :text_comment %>
+    <%= f.text_area :text_comment, id: :comment_text_comment, class: 'form-control', rows: '4' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.hidden_field(:post_id, value: @post.id) %>
+    <%= f.hidden_field(:post_id, value: @post.id) %>
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit 'Comentar', class: 'btn btn-info' %>
+  </div>
+<% end %>

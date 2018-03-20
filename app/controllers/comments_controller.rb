@@ -1,5 +1,12 @@
 class CommentsController < ApplicationController
+  include CurrentPost
+
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
+  #before_action :view_id_post, only: [:show, :edit, :update, :destroy]
+
+  #def view_id_post
+  #  @post =  lambda {save_post}
+  #end
 
   # GET /comments
   # GET /comments.json
@@ -24,13 +31,11 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-    @post = Post.find(params[:post_id])
-    @comment = @post.comments.create(comment_params)
-    redirect_to post_path(@post)
+    @comment = Comment.new(comment_params)
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
+        format.html { redirect_to posts_path, notice: 'Comment was successfully created.' }
         format.json { render :show, status: :created, location: @comment }
       else
         format.html { render :new }
